@@ -40,6 +40,7 @@ import Combine
 import Lint.Types exposing (File, LintRule, LintError, LintImplementation, LintRuleImplementation, Direction, Visitor, Severity, Severity(..))
 import Lint.Visitor exposing (transformStatementsIntoVisitors, expressionToVisitors)
 import Regex
+import RemoveComments exposing (removeComments)
 
 
 {-| Lints a file and gives back the errors raised by the given rules.
@@ -74,12 +75,6 @@ parseSource source =
         |> Ast.parse
         |> Result.mapError (\( _, _, errors ) -> errors)
         |> Result.map (\( _, _, statements ) -> statements)
-
-
-removeComments : String -> String
-removeComments =
-    Regex.replace Regex.All (Regex.regex "--.$") (always "")
-        >> Regex.replace Regex.All (Regex.regex "\n +\\w+ : .*") (always "")
 
 
 {-| Lints source code using a given rule implementation, and gives back a list of errors that were found.
