@@ -1,3 +1,7 @@
+# DEPRECATION NOTICE
+
+`elm-lint` has been deprecated in favor of [`elm-review`](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/). The API of `elm-lint` v4.1.x and `elm-review` v1.0.x are the same, except that pretty much everywhere you see `Lint`, it should now be `Review`, and `Lint.lint` becomes `Review.review`.
+
 # elm-lint
 
 ![](https://travis-ci.com/jfmengels/elm-lint.svg?branch=master)
